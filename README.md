@@ -73,36 +73,55 @@ To bring structure and manageability to top-down product requirements while main
 
 ---
 
+## PRD and Task Separation
+
+**Important:** The Product Requirements Document (PRD) should only include **Epics** and **User Stories**. Tasks are implementation details and should be tracked separately in your task management tool (Trello, Notion, Jira, etc.).
+
+**Why this separation?**
+
+- PRD focuses on **what** needs to be built and **why** (business value and user perspective)
+- Tasks focus on **how** to build it (technical implementation)
+- PRD is for stakeholders and documentation
+- Tasks are for personal work management
+
+---
+
 ## Workflow
 
-### When BOD Provides an Idea/Requirement
+### When BOD Provides an Idea/Requirement:
 
 1. **Define the Epic**
    - Capture the BOD's idea as an Epic
    - Note the deadline
    - Clarify the overall objective
 
-2. **Break Down into User Stories**
+2. **Break Down into User Stories (in PRD)**
    - Ask: "What value does the user get?"
    - Identify all the user-facing functionalities needed
    - Write each as a user story from the user's perspective
+   - Estimate each user story in days (e.g., 2-5 days)
 
-3. **Decompose User Stories into Tasks**
-   - For each user story, list all technical work needed
+3. **Create PRD**
+   - Document epics and user stories in the PRD
+   - Include acceptance criteria and technical specifications
+   - Stop here - do NOT include tasks in the PRD
+
+4. **Decompose User Stories into Tasks (in tracking tool)**
+   - For each user story, create tasks in your tracking tool (Trello, Notion, etc.)
    - Ensure each task is sized to approximately one day
    - Include testing, deployment, and documentation tasks
+   - Tasks are for your personal work management
 
-4. **Estimate and Communicate**
-   - Sum up task estimates to get user story estimates
+5. **Estimate and Communicate**
    - Sum up user story estimates to get epic estimate
    - Compare total estimate against BOD deadline
    - Push back with data if deadline is unrealistic
    - Build in buffer time for code review, testing, and unexpected issues
 
-5. **Execute and Track**
-   - Work through tasks systematically
+6. **Execute and Track**
+   - Work through tasks systematically in your tracking tool
    - Mark completed tasks, user stories, and epics
-   - Communicate progress regularly
+   - Communicate progress to stakeholders using user stories (not tasks)
    - Adjust estimates based on actual completion time
 
 ---
@@ -150,18 +169,36 @@ This method is flexible. Adjust the process based on what works and what doesn't
 
 ## Tools and Tracking
 
-Recommended tools for managing this workflow:
+### Two Separate Systems:
 
-- Trello (visual kanban board)
-- Notion (flexible database and documentation)
-- Jira (if available, though may be overkill for solo work)
-- Simple spreadsheet (lightweight and quick to set up)
+**1. PRD (Product Requirements Document)**
 
-**Minimum tracking needed:**
+- Purpose: Document epics and user stories for stakeholders
+- Format: Markdown document or Google Docs
+- Contains: Business value, user stories, acceptance criteria, technical specs
+- Audience: BOD, team members, stakeholders
+
+**2. Task Tracking Tool**
+
+- Purpose: Manage daily implementation tasks
+- Tools: Trello, Notion, Jira, or simple spreadsheet
+- Contains: Breakdown of user stories into technical tasks
+- Audience: Just you (personal work management)
+
+### Minimum Tracking Needed:
+
+**In PRD:**
 
 - Epic name and deadline
-- List of user stories with status
-- List of tasks with time estimates and status
+- List of user stories with acceptance criteria
+- User story estimates (in days)
+- Status of each user story
+
+**In Task Tracking Tool:**
+
+- Tasks broken down from each user story
+- Task estimates (approximately 1 day each)
+- Task status (To Do, In Progress, Done)
 - Actual time spent vs. estimated time (for improving future estimates)
 
 ---
