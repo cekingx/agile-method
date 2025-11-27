@@ -2,7 +2,6 @@
 
 ## Document Overview
 - **Goal**: Short description about what we're building and why
-- **Deadline**: [Date from BOD]
 - **Status**: Draft/In Review/Approved
 
 ---
@@ -19,13 +18,13 @@ The problem this solves or opportunity it captures.
 
 ---
 
-### User Story X.Y: Story Title
+### User Story Y: Story Title
 
-**As a** [user type]  
-**I want to** [action/feature]  
+**As a** [user type]
+**I want to** [action/feature]
 **So that** [benefit/value]
 
-**Priority**: High/Medium/Low  
+**Priority**: High/Medium/Low
 **Estimate**: [X days]
 
 #### Acceptance Criteria

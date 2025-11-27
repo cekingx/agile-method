@@ -2,16 +2,12 @@
 
 ## User Story: [Story Title]
 
-**Story ID**: US-X.Y  
-**Estimate**: [X days] | **Actual**: [X days]  
-**Status**: To Do / In Progress / Done
-
 ---
 
-### Task: [Task Name]
+### X.Y: [Task Name]
 
-**ID**: T-X.Y | **Estimate**: [X hrs] | **Actual**: [X hrs]  
-**Status**: To Do / In Progress / Blocked / Done  
+**ID**: T-X.Y | **Estimate**: [X hrs]
+**Status**: To Do / In Progress / Blocked / Done
 **Depends on**: [Task ID or N/A]
 
 **What to do**:
@@ -23,9 +19,9 @@
 
 ---
 
-### Task: [Task Name]
+### X.Y: [Task Name]
 
-**ID**: T-X.Y | **Estimate**: [X hrs] | **Actual**: [X hrs]  
+**ID**: T-X.Y | **Estimate**: [X hrs] |
 **Status**: To Do / In Progress / Blocked / Done  
 **Depends on**: [Task ID or N/A]
 
@@ -39,10 +35,10 @@
 
 ## Example
 
-### Task: Implement Staking Function
+### 1.1: Implement Staking Function
 
-**ID**: T-1.1 | **Estimate**: 4 hrs | **Actual**: 5 hrs  
-**Status**: Done  
+**ID**: T-1.1 | **Estimate**: 4 hrs
+**Status**: Done
 **Depends on**: N/A
 
 **What to do**:
@@ -55,10 +51,10 @@
 
 ---
 
-### Task: Write Unit Tests
+### 1.2: Write Unit Tests
 
-**ID**: T-1.2 | **Estimate**: 3 hrs | **Actual**: 3 hrs  
-**Status**: Done  
+**ID**: T-1.2 | **Estimate**: 3 hrs
+**Status**: Done
 **Depends on**: T-1.1
 
 **What to do**:
