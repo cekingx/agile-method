@@ -216,6 +216,71 @@ agile-method/
 
 ---
 
+## Building Skills
+
+Skills need to be compiled into `.skill` files (zip archives) before Claude Code can use them.
+
+### Build All Skills
+
+```bash
+cd skills
+./build-all.sh
+```
+
+This will:
+- Automatically detect all skill directories
+- Compile each skill into a `.skill` file
+- Move compiled files to `compiled-skills/`
+- Display build progress and summary
+
+### Build Specific Skill
+
+```bash
+cd skills
+./build-all.sh prd-generation
+```
+
+Build only a single skill instead of all skills.
+
+### Clean and Rebuild
+
+```bash
+cd skills
+./build-all.sh --clean
+```
+
+Removes all existing `.skill` files and rebuilds everything from scratch.
+
+### Adding New Skills
+
+When you create a new skill:
+
+1. Create the skill directory structure in `skills/`:
+   ```
+   skills/your-new-skill/
+   ├── SKILL.md
+   ├── references/
+   └── assets/
+   ```
+
+2. Run the build script:
+   ```bash
+   cd skills
+   ./build-all.sh
+   ```
+
+The new skill will be automatically detected and compiled. No need to create a separate build script!
+
+### Troubleshooting
+
+**Build fails with "zip: command not found"**
+- Install zip: `sudo apt-get install zip` (Ubuntu/Debian) or `brew install zip` (macOS)
+
+**Permission denied when running script**
+- Make the script executable: `chmod +x build-all.sh`
+
+---
+
 ## Templates
 
 ### PRD Template (`template-prd.md`)
