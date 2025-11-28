@@ -1,235 +1,348 @@
-# My Agile Method
+# My Agile Method & Claude Code Tools
 
 ## Overview
 
-This is a customized Agile methodology adapted for smart contract and backend development in a non-Agile organization where requirements come from the Board of Directors (BOD) with fixed deadlines.
+This repository is a **personal documentation and tooling project** that combines:
 
-## Purpose
+1. **A customized Agile methodology** adapted for smart contract and blockchain development in non-Agile organizations with fixed BOD deadlines
+2. **Claude Code tools** (skills and agents) that automate and streamline the methodology
 
-To bring structure and manageability to top-down product requirements while maintaining focus on delivering user value incrementally.
+What started as simple methodology documentation has evolved into a comprehensive toolkit that helps transform BOD requirements into structured PRDs and task breakdowns using AI-powered automation.
 
-## Three-Level Hierarchy
+---
 
-### 1. Epic
+## Quick Start
 
-**Definition:** A collection of related user stories that represents a larger feature or BOD initiative.
+### Using the Skills
 
-**Characteristics:**
+With Claude Code, you can use these skills to automate your workflow:
 
+```bash
+# Generate a PRD from BOD requirements
+/prd-generation
+
+# Break down a user story into implementation tasks
+/task-generation
+```
+
+### Using the Project Manager Agent
+
+For complex planning and strategic project management:
+
+```bash
+# The project-manager agent will intelligently decide which skills to use
+# and help you create comprehensive execution plans
+```
+
+The agent will:
+- Analyze your requirements
+- Ask clarifying questions
+- Decide whether to generate a PRD, task breakdown, or both
+- Create phased execution roadmaps with risk assessment
+
+---
+
+## The Agile Methodology
+
+> For full methodology details, see [agile-method.md](agile-method.md)
+
+### Three-Level Hierarchy
+
+**1. Epic** - Large features from BOD with deadlines
 - Originates from BOD ideas and requirements
 - Too large to complete in a single sprint
-- Has an associated deadline from BOD
-- Represents a significant product feature or capability
+- Example: "Token Staking Platform", "NFT Marketplace Integration"
 
-**Example:**
-
-- "Token Staking Platform"
-- "Multi-signature Wallet Feature"
-- "NFT Marketplace Integration"
-
----
-
-### 2. User Story
-
-**Definition:** The smallest functionality that brings value to the end user.
-
-**Characteristics:**
-
+**2. User Story** - Smallest functionality delivering user value (2-5 days)
+- Written from user perspective: "As a [user type], I want [goal] so that [benefit]"
 - Delivers clear, tangible value to users
-- Can typically be completed in 2-5 days
-- Written from user perspective
-- Follows the format: "As a [user type], I want [goal] so that [benefit]"
+- **Goes in PRD**
+- Example: "As a token holder, I want to stake my tokens so that I can earn rewards"
 
-**Examples:**
-
-- "As a token holder, I want to transfer tokens to another wallet so that I can send funds to others"
-- "As a user, I want to see my token balance so that I know how many tokens I have"
-- "As a staker, I want to stake my tokens so that I can earn rewards"
-
-**Key Rule:** If a user story is complete, the user should be able to do something they couldn't do before or have a better experience.
-
----
-
-### 3. Task
-
-**Definition:** Technical work items needed to implement a user story.
-
-**Characteristics:**
-
-- Expected to be completed in approximately one day
-- Technical in nature (not user-facing by itself)
-- Represents specific implementation work
+**3. Task** - Technical implementation work (~1 day each)
+- Technical in nature, not user-facing by itself
 - Multiple tasks combine to complete a user story
+- **NOT in PRD** - tracked separately in personal tools
+- Example: "Implement staking function", "Write unit tests"
 
-**Examples:**
+### Key Principle: PRD and Task Separation
 
-- Write smart contract function
-- Create backend API endpoint
-- Add unit tests
-- Deploy to testnet
-- Write integration tests
-- Add error handling
-- Update documentation
+**PRD** (Product Requirements Document):
+- Contains ONLY Epics and User Stories
+- Focuses on **what** needs to be built and **why**
+- For stakeholders and documentation
 
----
+**Tasks**:
+- Tracked separately in your personal tool (Trello, Notion, etc.)
+- Focus on **how** to build it
+- For personal work management
 
-## PRD and Task Separation
+### Workflow
 
-**Important:** The Product Requirements Document (PRD) should only include **Epics** and **User Stories**. Tasks are implementation details and should be tracked separately in your task management tool (Trello, Notion, Jira, etc.).
-
-**Why this separation?**
-
-- PRD focuses on **what** needs to be built and **why** (business value and user perspective)
-- Tasks focus on **how** to build it (technical implementation)
-- PRD is for stakeholders and documentation
-- Tasks are for personal work management
-
----
-
-## Workflow
-
-### When BOD Provides an Idea/Requirement:
-
-1. **Define the Epic**
-   - Capture the BOD's idea as an Epic
-   - Note the deadline
-   - Clarify the overall objective
-
-2. **Break Down into User Stories (in PRD)**
-   - Ask: "What value does the user get?"
-   - Identify all the user-facing functionalities needed
-   - Write each as a user story from the user's perspective
-   - Estimate each user story in days (e.g., 2-5 days)
-
-3. **Create PRD**
-   - Document epics and user stories in the PRD
-   - Include acceptance criteria and technical specifications
-   - Stop here - do NOT include tasks in the PRD
-
-4. **Decompose User Stories into Tasks (in tracking tool)**
-   - For each user story, create tasks in your tracking tool (Trello, Notion, etc.)
-   - Ensure each task is sized to approximately one day
-   - Include testing, deployment, and documentation tasks
-   - Tasks are for your personal work management
-
-5. **Estimate and Communicate**
-   - Sum up user story estimates to get epic estimate
-   - Compare total estimate against BOD deadline
-   - Push back with data if deadline is unrealistic
-   - Build in buffer time for code review, testing, and unexpected issues
-
-6. **Execute and Track**
-   - Work through tasks systematically in your tracking tool
-   - Mark completed tasks, user stories, and epics
-   - Communicate progress to stakeholders using user stories (not tasks)
-   - Adjust estimates based on actual completion time
-
----
-
-## Key Principles
-
-### Focus on User Value
-
-Every user story must deliver something meaningful to the end user. If it doesn't provide user value, it's a task, not a user story.
-
-### Break Down Large Work
-
-Big ideas from BOD are broken down into manageable pieces that can be estimated, tracked, and delivered incrementally.
-
-### Maintain Visibility
-
-Keep a visible backlog (Trello, Notion, spreadsheet) to track progress and communicate status to stakeholders.
-
-### Build in Buffers
-
-Always include time for:
-
-- Code review
-- Testing and bug fixes
-- Unexpected complexity
-- Deployment and configuration
-- Documentation
-
-### Adapt as Needed
-
-This method is flexible. Adjust the process based on what works and what doesn't. The goal is to deliver value effectively, not to follow rules rigidly.
-
----
-
-## Benefits of This Approach
-
-- **Structure:** Brings order to top-down requirements
-- **Clarity:** Clear separation between business value (user stories) and technical work (tasks)
-- **Communication:** Provides a framework to discuss scope and timelines with BOD
-- **Manageability:** Large projects become manageable through decomposition
-- **Tracking:** Easy to track progress at multiple levels
-- **Flexibility:** Can adapt to changing priorities while maintaining structure
-
----
-
-## Tools and Tracking
-
-### Two Separate Systems:
-
-**1. PRD (Product Requirements Document)**
-
-- Purpose: Document epics and user stories for stakeholders
-- Format: Markdown document or Google Docs
-- Contains: Business value, user stories, acceptance criteria, technical specs
-- Audience: BOD, team members, stakeholders
-
-**2. Task Tracking Tool**
-
-- Purpose: Manage daily implementation tasks
-- Tools: Trello, Notion, Jira, or simple spreadsheet
-- Contains: Breakdown of user stories into technical tasks
-- Audience: Just you (personal work management)
-
-### Minimum Tracking Needed:
-
-**In PRD:**
-
-- Epic name and deadline
-- List of user stories with acceptance criteria
-- User story estimates (in days)
-- Status of each user story
-
-**In Task Tracking Tool:**
-
-- Tasks broken down from each user story
-- Task estimates (approximately 1 day each)
-- Task status (To Do, In Progress, Done)
-- Actual time spent vs. estimated time (for improving future estimates)
-
----
-
-## Example Structure
-
-```text
-Epic: Token Staking Platform (Deadline: 6 weeks)
-│
-├── User Story: As a token holder, I want to stake my tokens so that I can earn rewards
-│   ├── Task: Design staking smart contract architecture
-│   ├── Task: Implement staking function
-│   ├── Task: Implement unstaking function
-│   ├── Task: Write unit tests
-│   ├── Task: Deploy to testnet
-│   └── Task: Create backend API endpoints
-│
-├── User Story: As a staker, I want to view my staking rewards so that I know how much I've earned
-│   ├── Task: Implement reward calculation logic
-│   ├── Task: Create rewards query function
-│   ├── Task: Build backend API for rewards
-│   └── Task: Add integration tests
-│
-└── User Story: As a staker, I want to claim my rewards so that I can receive my earned tokens
-    ├── Task: Implement claim function in smart contract
-    ├── Task: Add claim validation logic
-    ├── Task: Create claim API endpoint
-    ├── Task: Write tests for claim functionality
-    └── Task: Deploy updated contract
+```
+BOD Requirement
+     ↓
+1. Define Epic (with deadline)
+     ↓
+2. Break into User Stories → Use prd-generation skill
+     ↓
+3. Create PRD (Epics + User Stories only)
+     ↓
+4. Decompose into Tasks → Use task-generation skill
+     ↓
+5. Estimate and Communicate with BOD
+     ↓
+6. Execute and Track
 ```
 
 ---
 
-**Note:** This document is the result of a collaboration between myself and Claude, an AI assistant by Anthropic, to develop a practical Agile methodology tailored to my work context as a smart contract and backend developer.
+## Claude Code Tools
+
+### Skills
+
+#### 1. **prd-generation**
+
+Generates comprehensive PRDs following the methodology.
+
+**When to use:**
+- You have a BOD requirement or feature request
+- You need to structure requirements into epics and user stories
+- You want to document what needs to be built and why
+
+**What it does:**
+- Breaks down requirements into epics
+- Creates user stories from user perspective
+- Adds acceptance criteria and technical specifications
+- Generates properly formatted PRD documents
+
+**Usage triggers:**
+- "create a PRD for..."
+- "write a requirements document for..."
+- "break down this feature..."
+- "document this requirement..."
+
+#### 2. **task-generation**
+
+Breaks down user stories into concrete technical tasks.
+
+**When to use:**
+- You have a user story that needs implementation planning
+- You need to create a work breakdown structure
+- You want to estimate implementation effort
+
+**What it does:**
+- Analyzes user stories to identify technical components
+- Creates ~1 day tasks for development, testing, documentation, deployment
+- Adds task dependencies and estimates
+- Generates properly formatted task tracking documents
+
+**Usage triggers:**
+- "break down this user story into tasks..."
+- "create tasks for..."
+- "what tasks are needed..."
+- "generate task list..."
+
+### Agent
+
+#### **project-manager**
+
+An elite strategic planning agent for complex project management.
+
+**When to use:**
+- You need to plan how to execute a solution
+- You have a complex initiative to break down
+- You're unsure which skill to use or need both
+- You need risk assessment and phased execution plans
+
+**What it does:**
+- Analyzes problems and scopes requirements
+- Asks clarifying questions
+- Decides which skill(s) to use (PRD, tasks, or both)
+- Creates phased execution roadmaps
+- Assesses risks and provides mitigation strategies
+- Generates comprehensive project plans
+
+**Decision framework:**
+- Vague requirements → Uses prd-generation first
+- Clear requirements needing breakdown → Uses task-generation
+- Complex projects → Uses both skills sequentially
+- Simple problems → Provides plan directly
+
+---
+
+## Project Structure
+
+```
+agile-method/
+├── README.md                    # This file - overview and tool documentation
+├── agile-method.md             # Detailed methodology reference
+├── template-prd.md             # PRD template
+├── template-tasks.md           # Task tracking template
+│
+├── skills/                     # Claude Code skills (source)
+│   ├── prd-generation/
+│   │   ├── SKILL.md           # Skill definition
+│   │   ├── references/
+│   │   │   └── agile-methodology.md
+│   │   └── assets/
+│   │       └── prd-template.md
+│   └── task-generation/
+│       ├── SKILL.md           # Skill definition
+│       ├── references/
+│       │   └── task-guidelines.md
+│       └── assets/
+│           └── task-template.md
+│
+├── compiled-skills/           # Compiled .skill files
+│   ├── prd-generation.skill
+│   └── task-generation.skill
+│
+├── agents/                    # Claude Code agents
+│   └── project-manager.md
+│
+└── .claude/                   # Claude Code configuration
+    ├── agents/                # Symlinked to ../agents
+    └── skills/                # Symlinked to ../compiled-skills
+```
+
+### Key Directories
+
+- **skills/**: Source files for Claude Code skills with references and templates
+- **compiled-skills/**: Compiled .skill files ready for Claude Code to use
+- **agents/**: Agent definitions for strategic planning
+- **templates/**: PRD and task tracking templates
+- **.claude/**: Configuration directory with symlinks to skills and agents
+
+---
+
+## Templates
+
+### PRD Template (`template-prd.md`)
+
+Structured format for documenting epics and user stories:
+- Document overview (goal, deadline, status)
+- Epic descriptions with business value
+- User stories with:
+  - "As a..., I want..., so that..." format
+  - Acceptance criteria (testable conditions)
+  - Technical specifications (endpoints, smart contracts, database)
+  - Priority and estimates
+
+### Task Template (`template-tasks.md`)
+
+Structured format for tracking implementation tasks:
+- User story header with ID and estimates
+- Individual tasks with:
+  - Task ID (T-X.Y format)
+  - Time estimates and actuals
+  - Status tracking
+  - Dependencies
+  - Step-by-step checklist
+  - Notes and learnings
+
+---
+
+## Smart Contract Development Focus
+
+The methodology and tools are specifically tailored for blockchain development:
+
+**Common User Story Patterns:**
+- Token operations (transfer, stake, unstake, claim)
+- Viewing balances and states
+- Managing permissions
+- Interacting with other protocols
+
+**Common Task Patterns:**
+- Design smart contract architecture
+- Implement core functions with access control
+- Add input validation and error handling
+- Write unit and integration tests
+- Deploy to testnet/mainnet
+- Gas optimization
+- Add NatSpec comments
+- Security audit preparation
+
+---
+
+## Key Benefits
+
+1. **Structure** - Brings order to top-down BOD requirements
+2. **Automation** - AI-powered tools generate PRDs and task breakdowns
+3. **Clarity** - Clear separation between business value (user stories) and technical work (tasks)
+4. **Communication** - Framework for discussing scope and timelines with non-technical stakeholders
+5. **Manageability** - Large projects become manageable through systematic decomposition
+6. **Tracking** - Easy progress tracking at multiple levels (epic → story → task)
+7. **Flexibility** - Adaptable to changing priorities while maintaining structure
+
+---
+
+## Example: Token Staking Platform
+
+**Epic**: Token Staking Platform (Deadline: 6 weeks)
+
+**User Story 1**: As a token holder, I want to stake my tokens so that I can earn rewards (3 days)
+- Acceptance criteria: Can stake tokens, balance updates correctly, events emitted
+- Tasks: Design architecture (4h), Implement stake function (4h), Write tests (3h), Deploy testnet (2h)
+
+**User Story 2**: As a staker, I want to view my staking rewards so that I know how much I've earned (2 days)
+- Acceptance criteria: Can query rewards, calculation is accurate, updates in real-time
+- Tasks: Implement reward logic (4h), Create query function (3h), Build API (4h), Add tests (3h)
+
+**User Story 3**: As a staker, I want to claim my rewards so that I can receive my earned tokens (2 days)
+- Acceptance criteria: Can claim rewards, tokens transfer correctly, cannot claim twice
+- Tasks: Implement claim function (4h), Add validation (3h), Create API (3h), Write tests (3h), Deploy (2h)
+
+---
+
+## Quality Checklist
+
+### For PRDs (via prd-generation skill)
+- Every user story delivers clear user value
+- Stories follow "As a..., I want..., so that..." format
+- Acceptance criteria are testable
+- Technical specifications are complete
+- NO tasks in PRD (tasks tracked separately)
+
+### For Tasks (via task-generation skill)
+- Each task sized to ~1 day max
+- Cover development, testing, documentation, deployment
+- Dependencies clearly noted
+- Estimates are realistic
+- Technical focus (implementation details)
+
+---
+
+## How It Works Together
+
+1. **BOD gives you a requirement** with a deadline
+
+2. **Use prd-generation skill** (or project-manager agent)
+   - Generates epic definition
+   - Breaks into user stories
+   - Creates PRD with acceptance criteria and technical specs
+
+3. **Use task-generation skill** for each user story
+   - Breaks user stories into ~1 day tasks
+   - Includes development, testing, deployment tasks
+   - Adds estimates and dependencies
+
+4. **Sum estimates and communicate**
+   - Compare against BOD deadline
+   - Push back with data if unrealistic
+   - Build in buffers for code review and testing
+
+5. **Execute systematically**
+   - Track tasks in your personal tool
+   - Communicate progress using user stories (not tasks)
+   - Adjust estimates based on actuals
+
+---
+
+## Attribution
+
+This project is the result of a collaboration between myself and Claude, an AI assistant by Anthropic, to develop:
+- A practical Agile methodology tailored to my work context as a smart contract and backend developer
+- Claude Code tools (skills and agents) that automate and streamline the methodology
+
+The methodology focuses on practical delivery over rigid process adherence, with emphasis on communicating effectively with non-technical stakeholders (BOD) while maintaining technical rigor.
