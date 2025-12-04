@@ -75,13 +75,14 @@ Copy structure from [assets/task-template.md](assets/task-template.md) and fill 
 ## Output Format
 
 Generate markdown following the task template:
-- User Story header with ID, estimate, status
+- User Story header with No, estimate, status
 - Each task with:
-  - ID (T-X.Y format, e.g., T-1.1, T-1.2)
+  - Number (X.Y format, e.g., 1.1, 1.2)
   - Estimate in hours
   - Status
   - Dependencies
   - What to do (checkbox list)
+  - Implementation Notes (concise syntax that matters, do not include the full codebase)
   - Notes section
 
 ## Smart Contract Task Patterns
@@ -122,7 +123,6 @@ Before finalizing:
 - [ ] Estimates are realistic
 - [ ] Tasks are technical (not user stories)
 - [ ] Checkboxes break down each task into steps
-- [ ] Task IDs follow T-X.Y format
 
 ## Example Task Breakdown
 
@@ -131,21 +131,36 @@ Before finalizing:
 **Tasks**:
 
 ### Task: Design Staking Contract Architecture
-**ID**: T-1.1 | **Estimate**: 4 hrs
+**No**: 1.1 | **Estimate**: 4 hrs
 - [ ] Define state variables needed
 - [ ] Design staking/unstaking flow
 - [ ] Plan reward calculation mechanism
 - [ ] Identify security considerations
 
+**Implementation Notes**:
+
+```solidity
+uint256 stakeAmount;
+```
+
 ### Task: Implement Stake Function
-**ID**: T-1.2 | **Estimate**: 4 hrs | **Depends on**: T-1.1
+**No**: 1.2 | **Estimate**: 4 hrs | **Depends on**: 1.1
 - [ ] Create stake() function signature
 - [ ] Add balance checks
 - [ ] Implement token transfer logic
 - [ ] Emit Staked event
 
+**Implementation Notes**:
+
+```solidity
+function stake(uint256 amount) payable {}
+function unstake(uint256 amount) {}
+function rewardAmount(address user) {}
+
+```
+
 ### Task: Write Unit Tests
-**ID**: T-1.3 | **Estimate**: 3 hrs | **Depends on**: T-1.2
+**No**: 1.3 | **Estimate**: 3 hrs | **Depends on**: T-1.2
 - [ ] Test successful staking
 - [ ] Test insufficient balance
 - [ ] Test zero amount staking
@@ -153,7 +168,7 @@ Before finalizing:
 
 ## Task Numbering
 
-Use two-level numbering: T-X.Y
+Use two-level numbering: X.Y
 - X = User Story number
 - Y = Task number within that story
-- Example: T-1.1, T-1.2, T-1.3 (tasks for User Story 1)
+- Example: 1.1, 1.2, 1.3 (tasks for User Story 1)

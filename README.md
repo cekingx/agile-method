@@ -37,7 +37,8 @@ For complex planning and strategic project management:
 The agent will:
 - Analyze your requirements
 - Ask clarifying questions
-- Decide whether to generate a PRD, task breakdown, or both
+- Recommend whether to generate a PRD, task breakdown, or both
+- Ask for your confirmation before generating any artifacts
 - Create phased execution roadmaps with risk assessment
 
 ---
