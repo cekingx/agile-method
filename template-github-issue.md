@@ -1,7 +1,6 @@
-# Implementation: [User Story Title] - [Layer]
+# Implementation: [User Story Title]
 
-**Implements**: [Link to Taiga User Story #XXX]  
-**Layer**: Backend / Frontend / Smart Contract  
+**Layer**: Backend / Frontend / Smart Contract
 
 ---
 
@@ -116,14 +115,6 @@ CREATE TABLE table_name (
 - [ ] [Write integration tests]
 - [ ] [Code review fixes]
 - [ ] [Update documentation]
-
----
-
-## Related Issues
-
-- Depends on: #XXX
-- Blocks: #XXX
-- Related to: #XXX
 
 ---
 

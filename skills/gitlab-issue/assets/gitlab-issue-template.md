@@ -1,9 +1,6 @@
-# Implementation: [User Story Title] - [Layer]
+# Implementation: [User Story Title]
 
-**Implements**: [Link to Taiga User Story #XXX]  
-**Layer**: Backend / Frontend / Smart Contract  
-**Estimate**: [X days]  
-**Assignee**: [Developer name]
+**Layer**: Backend / Frontend / Smart Contract
 
 ---
 
@@ -16,6 +13,8 @@
 ---
 
 ## Technical Requirements
+
+Keep the requirement and implementation concise. Avoid full implementation
 
 ### Endpoints (if Backend)
 
@@ -116,14 +115,6 @@ CREATE TABLE table_name (
 - [ ] [Write integration tests]
 - [ ] [Code review fixes]
 - [ ] [Update documentation]
-
----
-
-## Related Issues
-
-- Depends on: #XXX
-- Blocks: #XXX
-- Related to: #XXX
 
 ---
 

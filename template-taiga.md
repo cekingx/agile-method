@@ -32,16 +32,6 @@
 
 ---
 
-## Related Implementation
-
-Link to technical implementation tasks:
-
-- **Backend**: [GitLab Issue #XXX]
-- **Frontend**: [GitLab Issue #XXX]
-- **Smart Contract**: [GitLab Issue #XXX]
-
----
-
 ## Notes
 
 [Any additional context, dependencies, or clarifications needed]

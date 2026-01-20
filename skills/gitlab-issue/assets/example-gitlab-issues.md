@@ -22,26 +22,23 @@ These examples show how to break down a single Taiga user story into multiple Gi
 
 ---
 
-## GitLab Issue #101: Implement Staking Smart Contract
+## Implementation: Stake Tokens
 
-**Implements**: [Taiga User Story #45 - Stake Tokens]  
-**Layer**: Smart Contract  
-**Estimate**: 3 days  
-**Assignee**: [Developer name]
+**Layer**: Smart Contract
 
 ---
 
-### User Story Context
+## User Story Context
 
-**As a** token holder  
-**I want to** stake my tokens  
+**As a** token holder
+**I want to** stake my tokens
 **So that** I can earn rewards and participate in the protocol
 
 ---
 
-### Technical Requirements
+## Technical Requirements
 
-#### Smart Contract Functions
+### Smart Contract
 
 **Function**: `stake(uint256 amount) external returns (bool)`
 - **Description**: Allows users to stake tokens and begin earning rewards
@@ -66,125 +63,78 @@ These examples show how to break down a single Taiga user story into multiple Gi
 **Function**: `getMinimumStake() external view returns (uint256)`
 - **Description**: Returns the minimum stake amount allowed
 - **Returns**: Minimum stake in wei
+- **Access Control**: Public view function
+- **Events Emitted**:
+  - `Staked(address indexed user, uint256 amount, uint256 timestamp)`
+  - `MinimumStakeUpdated(uint256 oldMinimum, uint256 newMinimum)`
+- **Gas Optimization Notes**:
+  - Use `uint256` instead of smaller types
+  - Batch state updates where possible
+  - Emit events after all state changes
+- **Security Considerations**:
+  - Reentrancy protection required
+  - Validate amount > 0 and amount >= minimumStake
+  - User must approve contract before staking
+  - Use SafeMath or Solidity 0.8+ overflow checks
 
 ---
 
-#### State Variables
-
-```solidity
-// Mapping of user address to staked amount
-mapping(address => uint256) public stakedBalance;
-
-// Mapping of user address to staking start time
-mapping(address => uint256) public stakingStartTime;
-
-// Total amount staked in the contract
-uint256 public totalStaked;
-
-// Minimum stake amount (e.g., 100 tokens)
-uint256 public minimumStake;
-
-// Reference to the ERC20 token contract
-IERC20 public stakingToken;
-```
-
----
-
-#### Events
-
-```solidity
-event Staked(address indexed user, uint256 amount, uint256 timestamp);
-event MinimumStakeUpdated(uint256 oldMinimum, uint256 newMinimum);
-```
-
----
-
-#### Security Considerations
-
-- **Reentrancy Protection**: Use `nonReentrant` modifier or checks-effects-interactions pattern
-- **Integer Overflow**: Use SafeMath or Solidity 0.8+ built-in overflow checks
-- **Access Control**: Ensure only token holders can stake
-- **Validation**: Check amount > 0 and amount >= minimumStake
-- **Token Approval**: User must approve contract before staking
-
----
-
-#### Gas Optimization Notes
-
-- Use `uint256` instead of smaller types (no gas savings from packing)
-- Batch state updates where possible
-- Consider using unchecked arithmetic where overflow is impossible
-- Emit events after all state changes
-
----
-
-### Implementation Notes
+## Implementation Notes
 
 - Follow EIP-20 token standard for interactions
+- Use OpenZeppelin's `SafeERC20` for token transfers
 - Consider implementing emergency withdraw function
 - Add pause functionality for upgrades or emergencies
-- Use OpenZeppelin's `SafeERC20` for token transfers
 - Ensure contract can receive tokens (if using transferFrom)
-- Consider implementing a cooldown period if needed
+- Implement cooldown period if needed for tokenomics
 
 ---
 
-### Implementation Tasks
+## Implementation Tasks
 
 - [ ] Design contract architecture and state variables
 - [ ] Implement stake function with validation
 - [ ] Implement balance query functions
-- [ ] Add event emissions
-- [ ] Implement reentrancy protection
+- [ ] Add event emissions and reentrancy protection
 - [ ] Add access control and modifiers
 - [ ] Write comprehensive unit tests
 - [ ] Test edge cases (zero amount, insufficient balance, etc.)
 - [ ] Run gas optimization analysis
 - [ ] Security audit preparation
-- [ ] Deploy to testnet for integration testing
+- [ ] Deploy to testnet
+- [ ] Update documentation
 
 ---
 
-### Related Issues
-
-- Blocks: #102 (Backend needs contract deployed)
-- Blocks: #103 (Frontend needs contract ABI)
-- Related to: #106 (Unstake function)
-
----
-
-### Definition of Done
+## Definition of Done
 
 - [ ] Code implemented according to specifications
-- [ ] All tests passing (unit + integration)
+- [ ] All tests passing
 - [ ] Code reviewed and approved
-- [ ] Security considerations addressed
-- [ ] Gas optimization completed
-- [ ] Deployed to testnet
-- [ ] Contract verified on block explorer
+- [ ] Documentation updated
+- [ ] Merged to main branch
+- [ ] Deployed to staging
+- [ ] QA verified
 
 ---
 
-## GitLab Issue #102: Create Staking Backend API
+## Implementation: Stake Tokens
 
-**Implements**: [Taiga User Story #45 - Stake Tokens]  
-**Layer**: Backend  
-**Estimate**: 2 days  
-**Assignee**: [Developer name]
+**Layer**: Backend
 
 ---
 
-### User Story Context
+## User Story Context
 
-**As a** token holder  
-**I want to** stake my tokens  
+**As a** token holder
+**I want to** stake my tokens
 **So that** I can earn rewards and participate in the protocol
 
 ---
 
-### Technical Requirements
+## Technical Requirements
 
-#### Endpoints
+### Endpoints
 
 **POST** `/api/v1/staking/stake`
 - **Description**: Initiates a staking transaction
@@ -251,9 +201,9 @@ event MinimumStakeUpdated(uint256 oldMinimum, uint256 newMinimum);
 
 ---
 
-#### Database Changes
+### Database Changes
 
-**New Table**: `staking_transactions`
+**New Tables**:
 ```sql
 CREATE TABLE staking_transactions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -275,38 +225,32 @@ CREATE INDEX idx_staking_tx_hash ON staking_transactions(transaction_hash);
 CREATE INDEX idx_staking_created_at ON staking_transactions(created_at DESC);
 ```
 
-**Migration**: Create migration file for adding staking_transactions table
+**Migrations**:
+- [ ] Create migration file for adding staking_transactions table
+- [ ] Test rollback
+
+**Indexes**:
+- Add index on `user_address` for performance
+- Add index on `transaction_hash` for lookups
+- Add index on `created_at` for history queries
 
 ---
 
-#### Event Listeners
-
-**Listen for**: `Staked` event from smart contract
-- **Purpose**: Update database when staking transactions are confirmed on-chain
-- **Logic**:
-  1. Parse event data (user address, amount, timestamp)
-  2. Update transaction status to 'confirmed'
-  3. Store block number and gas used
-  4. Update user's cached staked balance
-  5. Trigger any reward calculation updates
-
----
-
-### Implementation Notes
+## Implementation Notes
 
 - Use Web3.js or Ethers.js for blockchain interaction
 - Implement transaction queue for handling high volume
 - Add rate limiting (e.g., max 10 requests per minute per user)
 - Cache staking balances with 30-second TTL
-- Implement webhook for frontend notifications
 - Use environment variables for contract address and RPC endpoint
 - Add comprehensive error logging
 - Implement transaction retry logic for failed submissions
+- Set up event listeners for `Staked` events from smart contract to update database when transactions are confirmed
 - Consider using WebSocket for real-time event updates
 
 ---
 
-### Implementation Tasks
+## Implementation Tasks
 
 - [ ] Set up API route handlers
 - [ ] Implement staking transaction endpoint
@@ -314,60 +258,44 @@ CREATE INDEX idx_staking_created_at ON staking_transactions(created_at DESC);
 - [ ] Implement config endpoint
 - [ ] Create database migration
 - [ ] Set up blockchain event listeners
-- [ ] Add transaction status tracking
-- [ ] Implement caching layer
-- [ ] Add authentication middleware
-- [ ] Add validation middleware
-- [ ] Implement error handling
-- [ ] Add logging and monitoring
+- [ ] Add transaction status tracking and caching
+- [ ] Add authentication and validation middleware
+- [ ] Implement error handling and logging
 - [ ] Write API integration tests
 - [ ] Test with testnet contract
-- [ ] API documentation (OpenAPI/Swagger)
+- [ ] Update API documentation
 
 ---
 
-### Related Issues
+## Definition of Done
 
-- Depends on: #101 (Smart contract must be deployed)
-- Blocks: #103 (Frontend needs API endpoints)
-- Related to: #105 (Event listener infrastructure)
-
----
-
-### Definition of Done
-
-- [ ] All endpoints implemented and tested
-- [ ] Database migration created and tested
-- [ ] Event listeners working correctly
-- [ ] Authentication and validation in place
-- [ ] Error handling comprehensive
-- [ ] API documentation complete
-- [ ] Integration tests passing
-- [ ] Deployed to staging environment
-- [ ] Load testing completed
+- [ ] Code implemented according to specifications
+- [ ] All tests passing
+- [ ] Code reviewed and approved
+- [ ] Documentation updated
+- [ ] Merged to main branch
+- [ ] Deployed to staging
+- [ ] QA verified
 
 ---
 
-## GitLab Issue #103: Build Staking Frontend UI
+## Implementation: Stake Tokens
 
-**Implements**: [Taiga User Story #45 - Stake Tokens]  
-**Layer**: Frontend  
-**Estimate**: 3 days  
-**Assignee**: [Developer name]
+**Layer**: Frontend
 
 ---
 
-### User Story Context
+## User Story Context
 
-**As a** token holder  
-**I want to** stake my tokens  
+**As a** token holder
+**I want to** stake my tokens
 **So that** I can earn rewards and participate in the protocol
 
 ---
 
-### Technical Requirements
+## Technical Requirements
 
-#### Components to Create
+### Components
 
 **Component**: `StakingForm.jsx`
 - **Purpose**: Main form for staking tokens
@@ -418,9 +346,7 @@ CREATE INDEX idx_staking_created_at ON staking_transactions(created_at DESC);
 
 ---
 
-#### State Management
-
-**Global State** (Redux/Zustand/Context):
+**State Management**:
 ```typescript
 interface StakingState {
   // User data
@@ -447,123 +373,55 @@ interface StakingState {
 
 ---
 
-#### API Integration
+**API Integration**:
+- Endpoints to call: `/api/v1/staking/stake`, `/api/v1/staking/balance/:address`, `/api/v1/staking/config`
+- Error handling approach: Network errors, validation errors, transaction failures
+- Loading states: Skeleton loaders, spinners, progress indicators
 
-**Endpoints to integrate**:
-- `POST /api/v1/staking/stake` - Submit staking transaction
-- `GET /api/v1/staking/balance/:address` - Fetch user balance
-- `GET /api/v1/staking/config` - Get staking configuration
-
-**Error Handling**:
-- Network errors → Show "Connection lost" message
-- Validation errors → Show inline field errors
-- Transaction failures → Show detailed error with retry option
-- Insufficient balance → Disable submit, show warning
+**UI/UX Requirements**:
+- Design mockup link: [URL]
+- Responsive breakpoints: Mobile (< 768px), Tablet (768px - 1024px), Desktop (> 1024px)
+- Accessibility requirements: ARIA labels, keyboard navigation, screen reader support
 
 ---
 
-#### Web3 Integration
-
-**Wallet Connection**:
-- Use WalletConnect or MetaMask
-- Handle wallet switching
-- Handle network switching (ensure correct chain)
-
-**Contract Interaction**:
-- Check token approval before staking
-- Request approval if needed (separate transaction)
-- Call stake function with user-provided amount
-- Listen for transaction confirmation
-- Update UI on success/failure
-
----
-
-#### UI/UX Requirements
-
-**Design**:
-- Mobile-first responsive design
-- Match existing app design system
-- Use Tailwind CSS for styling
-- Shadcn/UI components for modals and inputs
-
-**Responsiveness**:
-- Mobile (< 768px): Stacked layout
-- Tablet (768px - 1024px): 2-column layout
-- Desktop (> 1024px): 3-column layout
-
-**Loading States**:
-- Skeleton loaders for balance data
-- Spinner during transaction submission
-- Progress indicator for multi-step process (approve → stake)
-
-**Accessibility**:
-- ARIA labels for all interactive elements
-- Keyboard navigation support
-- Screen reader friendly error messages
-- Focus management in modals
-
----
-
-### Implementation Notes
+## Implementation Notes
 
 - Use BigNumber.js or ethers.BigNumber for token amounts
 - Format large numbers with commas (e.g., "1,000,000")
 - Display token amounts in human-readable format (not wei)
 - Implement optimistic UI updates (update UI immediately, rollback on error)
+- Use WalletConnect or MetaMask for wallet connection
+- Check token approval before staking, request approval if needed (separate transaction)
 - Add transaction hash link to block explorer
-- Consider adding notification system (toast messages)
 - Implement form validation (minimum stake, max balance, etc.)
-- Add analytics tracking for user actions
-- Consider implementing a tutorial/guide for first-time stakers
-
-**Third-party libraries**:
-- ethers.js or web3.js for blockchain interaction
-- react-hook-form for form management
-- react-query for API data fetching
-- zustand or redux for state management
-- react-hot-toast for notifications
+- Third-party libraries: ethers.js/web3.js, react-hook-form, react-query, zustand/redux, react-hot-toast
 
 ---
 
-### Implementation Tasks
+## Implementation Tasks
 
 - [ ] Set up component structure
-- [ ] Implement StakingForm component
-- [ ] Implement StakingBalance component
-- [ ] Implement confirmation modal
+- [ ] Implement StakingForm, StakingBalance, and confirmation modal components
 - [ ] Set up state management
 - [ ] Integrate with backend API
-- [ ] Integrate with Web3 wallet
-- [ ] Implement token approval flow
-- [ ] Add form validation
-- [ ] Implement error handling
-- [ ] Add loading states
-- [ ] Style components (responsive design)
+- [ ] Integrate with Web3 wallet and implement token approval flow
+- [ ] Add form validation and error handling
+- [ ] Style components with responsive design
 - [ ] Add accessibility features
 - [ ] Write component tests
 - [ ] Integration testing with testnet
 - [ ] Cross-browser testing
+- [ ] Update documentation
 
 ---
 
-### Related Issues
+## Definition of Done
 
-- Depends on: #101 (Needs contract ABI)
-- Depends on: #102 (Needs backend API)
-- Related to: #104 (Wallet connection component)
-
----
-
-### Definition of Done
-
-- [ ] All components implemented and functional
-- [ ] Responsive design working on all breakpoints
-- [ ] API integration complete and tested
-- [ ] Web3 integration working with test wallets
-- [ ] Form validation comprehensive
-- [ ] Error handling complete
-- [ ] Accessibility requirements met
-- [ ] Component tests passing
+- [ ] Code implemented according to specifications
+- [ ] All tests passing
 - [ ] Code reviewed and approved
+- [ ] Documentation updated
+- [ ] Merged to main branch
 - [ ] Deployed to staging
-- [ ] UX/UI review completed
+- [ ] QA verified
