@@ -1,10 +1,10 @@
-# Implementation: [User Story Title]
+## Implementation: [User Story Title]
 
 **Layer**: Backend / Frontend / Smart Contract
 
 ---
 
-## User Story Context
+### User Story Context
 
 **As a** [user type]  
 **I want to** [action/feature]  
@@ -12,11 +12,11 @@
 
 ---
 
-## Technical Requirements
+### Technical Requirements
 
 Keep the requirement and implementation concise. Avoid full implementation
 
-### Endpoints (if Backend)
+#### Endpoints (if Backend)
 
 **POST** `/api/[endpoint]` - [Description]
 - **Request**:
@@ -41,7 +41,7 @@ Keep the requirement and implementation concise. Avoid full implementation
 
 ---
 
-### Smart Contract (if Smart Contract)
+#### Smart Contract (if Smart Contract)
 
 **Function**: `functionName(param1, param2) returns (type)`
 - **Description**: What this function does
@@ -53,7 +53,7 @@ Keep the requirement and implementation concise. Avoid full implementation
 
 ---
 
-### Components (if Frontend)
+#### Components (if Frontend)
 
 **Components to Create/Modify**:
 - `ComponentName.jsx` - [Purpose]
@@ -75,7 +75,7 @@ Keep the requirement and implementation concise. Avoid full implementation
 
 ---
 
-### Database Changes (if applicable)
+#### Database Changes (if applicable)
 
 **New Tables**:
 ```sql
@@ -95,7 +95,7 @@ CREATE TABLE table_name (
 
 ---
 
-## Implementation Notes
+### Implementation Notes
 
 - [Technical gotchas or important details]
 - [Performance considerations]
@@ -105,7 +105,7 @@ CREATE TABLE table_name (
 
 ---
 
-## Implementation Tasks
+### Implementation Tasks
 
 - [ ] [Specific task - Design/architecture review]
 - [ ] [Core implementation work]
@@ -118,7 +118,7 @@ CREATE TABLE table_name (
 
 ---
 
-## Definition of Done
+### Definition of Done
 
 - [ ] Code implemented according to specifications
 - [ ] All tests passing
