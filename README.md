@@ -21,7 +21,13 @@ With Claude Code, you can use these skills to automate your workflow:
 # Generate a PRD from BOD requirements
 /prd-generation
 
-# Break down a user story into implementation tasks
+# Generate Taiga user stories with story points from an epic
+/taiga-user-story
+
+# Create detailed GitLab issues from a user story
+/gitlab-issue
+
+# Break down a user story into implementation tasks (simpler approach)
 /task-generation
 ```
 
@@ -45,7 +51,7 @@ The agent will:
 
 ## The Agile Methodology
 
-> For full methodology details, see [agile-method.md](agile-method.md)
+> For full methodology details, see [agile-method.md](agile-method.md) (v1) and [agile-method.v2.md](agile-method.v2.md) (v2 - enhanced with Taiga/GitLab integration)
 
 ### Three-Level Hierarchy
 
@@ -60,26 +66,44 @@ The agent will:
 - **Goes in PRD**
 - Example: "As a token holder, I want to stake my tokens so that I can earn rewards"
 
-**3. Task** - Technical implementation work (~1 day each)
-- Technical in nature, not user-facing by itself
-- Multiple tasks combine to complete a user story
+**3. Task** - Technical implementation work (two approaches)
+
+**V1 (Simple)**: Personal task tracking (~1 day each)
 - **NOT in PRD** - tracked separately in personal tools
 - Example: "Implement staking function", "Write unit tests"
 
-### Key Principle: PRD and Task Separation
+**V2 (Taiga/GitLab)**: Two-level task system
+- **Taiga Tasks**: High-level implementation categories
+  - Smart Contract Implementation
+  - Backend Implementation
+  - Frontend Implementation
+- **GitLab Issues**: Detailed technical tasks with specifications (~1 day each)
+  - Linked to parent Taiga tasks
+  - Complete technical specs, acceptance criteria, implementation details
+  - Example: "Implement stake() function with security checks"
 
-**PRD** (Product Requirements Document):
-- Contains ONLY Epics and User Stories
-- Focuses on **what** needs to be built and **why**
-- For stakeholders and documentation
+### Key Principle: Multi-System Separation
 
-**Tasks**:
-- Tracked separately in your personal tool (Trello, Notion, etc.)
-- Focus on **how** to build it
-- For personal work management
+**V1 (Simple)**: Two-system approach
+- **PRD**: Epics + User Stories (what and why)
+- **Tasks**: Personal tracking (how to build)
+
+**V2 (Enhanced)**: Three-system approach
+- **PRD**: Epics + User Stories (what and why)
+  - Documents requirements and business value
+  - For stakeholders and documentation
+- **Taiga**: User Stories + High-Level Tasks (product layer + progress tracking)
+  - Story points for estimation (Fibonacci: 1, 2, 3, 5, 8, 13)
+  - High-level task categories (Smart Contract/Backend/Frontend)
+  - Links to detailed GitLab issues
+- **GitLab Issues**: Detailed technical tasks (how to implement)
+  - Complete technical specifications
+  - Linked back to parent Taiga user stories
+  - For development work management
 
 ### Workflow
 
+**V1 (Simple)**:
 ```
 BOD Requirement
      ↓
@@ -94,6 +118,31 @@ BOD Requirement
 5. Estimate and Communicate with BOD
      ↓
 6. Execute and Track
+```
+
+**V2 (Enhanced - Taiga/GitLab)**:
+```
+BOD Requirement
+     ↓
+1. Define Epic (with deadline)
+     ↓
+2. Break into User Stories → Use prd-generation OR taiga-user-story skill
+     ↓
+3. Create PRD (Epics + User Stories only)
+     ↓
+4. Add to Taiga → Use taiga-user-story skill
+   - Add user stories with story points
+   - Create high-level tasks (Smart Contract/Backend/Frontend)
+     ↓
+5. Decompose into GitLab Issues → Use gitlab-issue skill
+   - Create detailed technical specifications
+   - Link back to Taiga user stories
+     ↓
+6. Estimate and Communicate with BOD
+     ↓
+7. Execute and Track
+   - Update Taiga for progress tracking
+   - Work from GitLab issues for implementation
 ```
 
 ---
@@ -144,6 +193,54 @@ Breaks down user stories into concrete technical tasks.
 - "what tasks are needed..."
 - "generate task list..."
 
+#### 3. **taiga-user-story**
+
+Generates Taiga-compatible user stories with story points and high-level implementation tasks.
+
+**When to use:**
+- You have an epic or BOD requirement to break down
+- You need to create user stories for Taiga
+- You want to estimate using story points (relative sizing)
+- You need high-level implementation task categories
+
+**What it does:**
+- Breaks down epics into user stories from user perspective
+- Estimates using story points (Fibonacci: 1, 2, 3, 5, 8, 13)
+- Creates high-level tasks by technology layer (Smart Contract, Backend, Frontend)
+- Generates properly formatted Taiga user stories
+- Adds placeholders for GitLab issue links
+
+**Usage triggers:**
+- "create user stories for..."
+- "break down this epic..."
+- "generate Taiga stories..."
+- "estimate this feature..."
+
+#### 4. **gitlab-issue**
+
+Generates detailed GitLab issues with technical specifications for implementing user stories.
+
+**When to use:**
+- You have a Taiga user story needing technical breakdown
+- You need detailed implementation specifications
+- You want to create concrete development tasks
+- You need to separate technical details from product layer
+
+**What it does:**
+- Creates separate GitLab issues for each technology layer
+- Adds detailed technical specifications:
+  - Smart Contract: Function signatures, events, security considerations
+  - Backend: API endpoints with schemas, event listeners, database changes
+  - Frontend: Components, state management, API integration
+- Links each issue back to parent Taiga user story
+- Provides implementation tasks and dependencies
+
+**Usage triggers:**
+- "create GitLab issues for..."
+- "break down this user story into tasks..."
+- "generate implementation tasks..."
+- "create technical tasks for GitLab..."
+
 ### Agent
 
 #### **project-manager**
@@ -177,9 +274,12 @@ An elite strategic planning agent for complex project management.
 ```
 agile-method/
 ├── README.md                    # This file - overview and tool documentation
-├── agile-method.md             # Detailed methodology reference
+├── agile-method.md             # Detailed methodology reference (v1)
+├── agile-method.v2.md          # Enhanced methodology with Taiga/GitLab (v2)
 ├── template-prd.md             # PRD template
 ├── template-tasks.md           # Task tracking template
+├── template-taiga.md           # Taiga user story template
+├── template-github-issue.md    # GitLab issue template
 │
 ├── skills/                     # Claude Code skills (source)
 │   ├── prd-generation/
@@ -188,16 +288,30 @@ agile-method/
 │   │   │   └── agile-methodology.md
 │   │   └── assets/
 │   │       └── prd-template.md
-│   └── task-generation/
+│   ├── task-generation/
+│   │   ├── SKILL.md           # Skill definition
+│   │   ├── references/
+│   │   │   └── task-guidelines.md
+│   │   └── assets/
+│   │       └── task-template.md
+│   ├── taiga-user-story/
+│   │   ├── SKILL.md           # Skill definition
+│   │   ├── references/
+│   │   │   └── agile-methodology-v2.md
+│   │   └── assets/
+│   │       └── taiga-template.md
+│   └── gitlab-issue/
 │       ├── SKILL.md           # Skill definition
 │       ├── references/
-│       │   └── task-guidelines.md
+│       │   └── gitlab-guidelines.md
 │       └── assets/
-│           └── task-template.md
+│           └── gitlab-issue-template.md
 │
 ├── compiled-skills/           # Compiled .skill files
 │   ├── prd-generation.skill
-│   └── task-generation.skill
+│   ├── task-generation.skill
+│   ├── taiga-user-story.skill
+│   └── gitlab-issue.skill
 │
 ├── agents/                    # Claude Code agents
 │   └── project-manager.md
@@ -297,7 +411,7 @@ Structured format for documenting epics and user stories:
 
 ### Task Template (`template-tasks.md`)
 
-Structured format for tracking implementation tasks:
+Structured format for tracking implementation tasks (v1 simple approach):
 - User story header with ID and estimates
 - Individual tasks with:
   - Task ID (T-X.Y format)
@@ -306,6 +420,31 @@ Structured format for tracking implementation tasks:
   - Dependencies
   - Step-by-step checklist
   - Notes and learnings
+
+### Taiga Template (`template-taiga.md`)
+
+Structured format for Taiga user stories (v2 enhanced approach):
+- User story in Taiga format
+- Story points (Fibonacci: 1, 2, 3, 5, 8, 13)
+- Acceptance criteria
+- High-level tasks by layer:
+  - Smart Contract Implementation
+  - Backend Implementation
+  - Frontend Implementation
+- Links to detailed GitLab issues
+
+### GitLab Issue Template (`template-github-issue.md`)
+
+Structured format for detailed GitLab issues (v2 enhanced approach):
+- Issue title and description
+- Link back to parent Taiga user story
+- Detailed technical specifications:
+  - For Smart Contract: Function signatures, events, security considerations
+  - For Backend: API endpoints with schemas, event listeners, database changes
+  - For Frontend: Components, state management, API integration
+- Implementation tasks with estimates
+- Dependencies and blockers
+- Testing requirements
 
 ---
 
@@ -347,6 +486,8 @@ The methodology and tools are specifically tailored for blockchain development:
 
 **Epic**: Token Staking Platform (Deadline: 6 weeks)
 
+### V1 (Simple) Example:
+
 **User Story 1**: As a token holder, I want to stake my tokens so that I can earn rewards (3 days)
 - Acceptance criteria: Can stake tokens, balance updates correctly, events emitted
 - Tasks: Design architecture (4h), Implement stake function (4h), Write tests (3h), Deploy testnet (2h)
@@ -355,9 +496,29 @@ The methodology and tools are specifically tailored for blockchain development:
 - Acceptance criteria: Can query rewards, calculation is accurate, updates in real-time
 - Tasks: Implement reward logic (4h), Create query function (3h), Build API (4h), Add tests (3h)
 
-**User Story 3**: As a staker, I want to claim my rewards so that I can receive my earned tokens (2 days)
-- Acceptance criteria: Can claim rewards, tokens transfer correctly, cannot claim twice
-- Tasks: Implement claim function (4h), Add validation (3h), Create API (3h), Write tests (3h), Deploy (2h)
+### V2 (Enhanced - Taiga/GitLab) Example:
+
+**User Story 1**: As a token holder, I want to stake my tokens so that I can earn rewards
+- **Story Points**: 5
+- **Acceptance criteria**: Can stake tokens, balance updates correctly, events emitted
+
+**Taiga Tasks**:
+- Smart Contract Implementation → GitLab #101, #102, #103
+- Backend Implementation → GitLab #104, #105
+- Frontend Implementation → GitLab #106, #107, #108
+
+**GitLab Issues**:
+- #101: Implement stake() function with amount validation and access control (8h)
+  - Function signature: `stake(uint256 amount) external`
+  - Security: Check minimum stake, prevent reentrancy
+  - Events: Emit `Staked(address indexed user, uint256 amount, uint256 timestamp)`
+- #102: Add staking balance tracking in contract state (4h)
+- #103: Write unit tests for staking logic (6h)
+- #104: Create POST /api/stake endpoint with request validation (4h)
+- #105: Add event listener for Staked events (3h)
+- #106: Build StakeForm component with amount input (4h)
+- #107: Add wallet integration for stake transaction (5h)
+- #108: Display staking confirmation and transaction status (3h)
 
 ---
 
@@ -381,6 +542,8 @@ The methodology and tools are specifically tailored for blockchain development:
 
 ## How It Works Together
 
+### V1 (Simple) Workflow:
+
 1. **BOD gives you a requirement** with a deadline
 
 2. **Use prd-generation skill** (or project-manager agent)
@@ -402,6 +565,69 @@ The methodology and tools are specifically tailored for blockchain development:
    - Track tasks in your personal tool
    - Communicate progress using user stories (not tasks)
    - Adjust estimates based on actuals
+
+### V2 (Enhanced - Taiga/GitLab) Workflow:
+
+1. **BOD gives you a requirement** with a deadline
+
+2. **Use prd-generation skill** to create initial PRD
+   - Generates epic definition
+   - Breaks into user stories
+   - Creates PRD with acceptance criteria and technical specs
+
+3. **Use taiga-user-story skill** to prepare for Taiga
+   - Converts user stories to Taiga format
+   - Adds story points estimation (Fibonacci: 1, 2, 3, 5, 8, 13)
+   - Creates high-level tasks (Smart Contract/Backend/Frontend)
+   - Adds GitLab issue placeholders
+
+4. **Use gitlab-issue skill** for detailed technical breakdown
+   - Creates separate GitLab issues for each technology layer
+   - Adds complete technical specifications
+   - Links back to parent Taiga user stories
+   - Provides implementation tasks with estimates
+
+5. **Sum estimates and communicate**
+   - Use story points for high-level communication with BOD
+   - Use detailed hour estimates for technical planning
+   - Compare against deadline and adjust scope if needed
+
+6. **Execute and track systematically**
+   - Update Taiga user stories and tasks for progress visibility
+   - Work from GitLab issues for detailed implementation
+   - Link completed GitLab issues to Taiga tasks
+   - Communicate progress using user stories (not technical details)
+
+### Decision Guide - Which Skills to Use:
+
+**Use prd-generation when:**
+- You need initial PRD documentation
+- Stakeholders need to review requirements
+- You're working with standard agile (no Taiga/GitLab)
+
+**Use taiga-user-story when:**
+- You're using Taiga for project management
+- You need story points for estimation
+- You want product-level progress tracking
+- You need to separate product layer from technical layer
+
+**Use gitlab-issue when:**
+- You have Taiga user stories to break down
+- You need detailed technical specifications
+- You want GitLab for development task tracking
+- You need bidirectional linking between systems
+
+**Use task-generation when:**
+- You want a simpler approach without Taiga/GitLab
+- You're using personal tools (Trello, Notion, etc.)
+- You don't need story points or multi-system tracking
+- You prefer straightforward task lists
+
+**Use project-manager agent when:**
+- You're unsure which approach to use
+- The project is complex and needs strategic planning
+- You need help deciding between v1 and v2 approaches
+- You want comprehensive execution plans with risk assessment
 
 ---
 
