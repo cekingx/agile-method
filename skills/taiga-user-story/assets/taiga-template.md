@@ -10,10 +10,6 @@
 
 [The problem this solves or opportunity it captures. Why does this matter to the business/users?]
 
-### Epic Deadline
-
-**Target Date**: [Date from BOD/stakeholders]
-
 ---
 
 ## User Story: [Title]
@@ -33,16 +29,6 @@
 - [ ] User sees [expected result or feedback]
 - [ ] System prevents [invalid scenario or shows appropriate error]
 - [ ] [Additional testable condition from user perspective]
-
----
-
-## Related Implementation
-
-Link to technical implementation tasks:
-
-- **Backend**: [GitLab Issue #XXX]
-- **Frontend**: [GitLab Issue #XXX]
-- **Smart Contract**: [GitLab Issue #XXX]
 
 ---
 
