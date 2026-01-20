@@ -8,7 +8,6 @@ These examples show how to break down a single Taiga user story into multiple Gi
 
 **User Story**: As a token holder, I want to stake my tokens so that I can earn rewards
 
-**Priority**: High  
 **Estimate**: 5 story points
 
 **Acceptance Criteria:**
@@ -28,7 +27,7 @@ These examples show how to break down a single Taiga user story into multiple Gi
 
 ---
 
-## User Story Context
+### User Story Context
 
 **As a** token holder
 **I want to** stake my tokens
@@ -36,9 +35,9 @@ These examples show how to break down a single Taiga user story into multiple Gi
 
 ---
 
-## Technical Requirements
+### Technical Requirements
 
-### Smart Contract
+#### Smart Contract
 
 **Function**: `stake(uint256 amount) external returns (bool)`
 - **Description**: Allows users to stake tokens and begin earning rewards
@@ -79,7 +78,7 @@ These examples show how to break down a single Taiga user story into multiple Gi
 
 ---
 
-## Implementation Notes
+### Implementation Notes
 
 - Follow EIP-20 token standard for interactions
 - Use OpenZeppelin's `SafeERC20` for token transfers
@@ -90,7 +89,7 @@ These examples show how to break down a single Taiga user story into multiple Gi
 
 ---
 
-## Implementation Tasks
+### Implementation Tasks
 
 - [ ] Design contract architecture and state variables
 - [ ] Implement stake function with validation
@@ -106,7 +105,7 @@ These examples show how to break down a single Taiga user story into multiple Gi
 
 ---
 
-## Definition of Done
+### Definition of Done
 
 - [ ] Code implemented according to specifications
 - [ ] All tests passing
@@ -124,7 +123,7 @@ These examples show how to break down a single Taiga user story into multiple Gi
 
 ---
 
-## User Story Context
+### User Story Context
 
 **As a** token holder
 **I want to** stake my tokens
@@ -132,9 +131,9 @@ These examples show how to break down a single Taiga user story into multiple Gi
 
 ---
 
-## Technical Requirements
+### Technical Requirements
 
-### Endpoints
+#### Endpoints
 
 **POST** `/api/v1/staking/stake`
 - **Description**: Initiates a staking transaction
@@ -201,7 +200,7 @@ These examples show how to break down a single Taiga user story into multiple Gi
 
 ---
 
-### Database Changes
+#### Database Changes
 
 **New Tables**:
 ```sql
@@ -236,7 +235,7 @@ CREATE INDEX idx_staking_created_at ON staking_transactions(created_at DESC);
 
 ---
 
-## Implementation Notes
+### Implementation Notes
 
 - Use Web3.js or Ethers.js for blockchain interaction
 - Implement transaction queue for handling high volume
@@ -250,7 +249,7 @@ CREATE INDEX idx_staking_created_at ON staking_transactions(created_at DESC);
 
 ---
 
-## Implementation Tasks
+### Implementation Tasks
 
 - [ ] Set up API route handlers
 - [ ] Implement staking transaction endpoint
@@ -267,7 +266,7 @@ CREATE INDEX idx_staking_created_at ON staking_transactions(created_at DESC);
 
 ---
 
-## Definition of Done
+### Definition of Done
 
 - [ ] Code implemented according to specifications
 - [ ] All tests passing
@@ -285,7 +284,7 @@ CREATE INDEX idx_staking_created_at ON staking_transactions(created_at DESC);
 
 ---
 
-## User Story Context
+### User Story Context
 
 **As a** token holder
 **I want to** stake my tokens
@@ -293,9 +292,9 @@ CREATE INDEX idx_staking_created_at ON staking_transactions(created_at DESC);
 
 ---
 
-## Technical Requirements
+### Technical Requirements
 
-### Components
+#### Components
 
 **Component**: `StakingForm.jsx`
 - **Purpose**: Main form for staking tokens
@@ -385,7 +384,7 @@ interface StakingState {
 
 ---
 
-## Implementation Notes
+### Implementation Notes
 
 - Use BigNumber.js or ethers.BigNumber for token amounts
 - Format large numbers with commas (e.g., "1,000,000")
@@ -399,7 +398,7 @@ interface StakingState {
 
 ---
 
-## Implementation Tasks
+### Implementation Tasks
 
 - [ ] Set up component structure
 - [ ] Implement StakingForm, StakingBalance, and confirmation modal components
@@ -416,7 +415,7 @@ interface StakingState {
 
 ---
 
-## Definition of Done
+### Definition of Done
 
 - [ ] Code implemented according to specifications
 - [ ] All tests passing

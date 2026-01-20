@@ -12,16 +12,15 @@ Staking mechanisms increase token utility and encourage long-term holding, reduc
 
 ## User Story 1: Stake Tokens
 
-**As a** token holder  
-**I want to** stake my tokens  
+**As a** token holder
+**I want to** stake my tokens
 **So that** I can earn rewards and participate in the protocol
 
-**Priority**: High  
 **Estimate**: 5 story points
 
 ---
 
-## Acceptance Criteria (User Perspective)
+### Acceptance Criteria (User Perspective)
 
 - [ ] User can connect their wallet to the staking platform
 - [ ] User can input the amount of tokens they want to stake
@@ -33,7 +32,7 @@ Staking mechanisms increase token utility and encourage long-term holding, reduc
 
 ---
 
-## Notes
+### Notes
 
 - Consider gas optimization for staking function
 - Ensure proper validation of stake amounts (minimum stake requirement)
@@ -41,7 +40,7 @@ Staking mechanisms increase token utility and encourage long-term holding, reduc
 
 ---
 
-## Definition of Done
+### Definition of Done
 
 - [ ] All related implementation tasks completed
 - [ ] All acceptance criteria met
@@ -53,16 +52,15 @@ Staking mechanisms increase token utility and encourage long-term holding, reduc
 
 ## User Story 2: View Staking Rewards
 
-**As a** staker  
-**I want to** view my accumulated staking rewards in real-time  
+**As a** staker
+**I want to** view my accumulated staking rewards in real-time
 **So that** I know how much I've earned
 
-**Priority**: High
 **Estimate**: 3 story points
 
 ---
 
-## Acceptance Criteria (User Perspective)
+### Acceptance Criteria (User Perspective)
 
 - [ ] User can see their total staked amount
 - [ ] User can see their accumulated rewards
@@ -72,14 +70,14 @@ Staking mechanisms increase token utility and encourage long-term holding, reduc
 
 ---
 
-## Notes
+### Notes
 
 - Rewards should update every block or at reasonable intervals
 - Consider showing historical rewards chart
 
 ---
 
-## Definition of Done
+### Definition of Done
 
 - [ ] All related implementation tasks completed
 - [ ] All acceptance criteria met
@@ -91,16 +89,15 @@ Staking mechanisms increase token utility and encourage long-term holding, reduc
 
 ## User Story 3: Claim Staking Rewards
 
-**As a** staker  
-**I want to** claim my accumulated rewards  
+**As a** staker
+**I want to** claim my accumulated rewards
 **So that** I can receive my earned tokens without unstaking
 
-**Priority**: Medium
 **Estimate**: 5 story points
 
 ---
 
-## Acceptance Criteria (User Perspective)
+### Acceptance Criteria (User Perspective)
 
 - [ ] User can see claimable reward amount
 - [ ] User can claim rewards with a single action
@@ -111,14 +108,14 @@ Staking mechanisms increase token utility and encourage long-term holding, reduc
 
 ---
 
-## Notes
+### Notes
 
 - Ensure claiming doesn't affect staking status
 - Consider claim cooldown period if needed for tokenomics
 
 ---
 
-## Definition of Done
+### Definition of Done
 
 - [ ] All related implementation tasks completed
 - [ ] All acceptance criteria met
@@ -130,16 +127,15 @@ Staking mechanisms increase token utility and encourage long-term holding, reduc
 
 ## User Story 4: Unstake Tokens
 
-**As a** staker  
-**I want to** unstake my tokens  
+**As a** staker
+**I want to** unstake my tokens
 **So that** I can withdraw my staked tokens when needed
 
-**Priority**: High
 **Estimate**: 5 story points
 
 ---
 
-## Acceptance Criteria (User Perspective)
+### Acceptance Criteria (User Perspective)
 
 - [ ] User can initiate unstaking process
 - [ ] User sees if there is an unstaking period/lock-up before withdrawal
@@ -150,7 +146,7 @@ Staking mechanisms increase token utility and encourage long-term holding, reduc
 
 ---
 
-## Notes
+### Notes
 
 - Clarify if instant unstaking or time-locked unstaking
 - Consider partial unstaking vs. full unstaking options
@@ -158,7 +154,7 @@ Staking mechanisms increase token utility and encourage long-term holding, reduc
 
 ---
 
-## Definition of Done
+### Definition of Done
 
 - [ ] All related implementation tasks completed
 - [ ] All acceptance criteria met
@@ -170,16 +166,15 @@ Staking mechanisms increase token utility and encourage long-term holding, reduc
 
 ## User Story 5: View Staking History
 
-**As a** staker  
-**I want to** view my staking transaction history  
+**As a** staker
+**I want to** view my staking transaction history
 **So that** I can track my staking activity over time
 
-**Priority**: Low
 **Estimate**: 3 story points
 
 ---
 
-## Acceptance Criteria (User Perspective)
+### Acceptance Criteria (User Perspective)
 
 - [ ] User can see all past staking transactions (stakes, claims, unstakes)
 - [ ] Each transaction shows date, type, amount, and transaction hash
@@ -188,14 +183,14 @@ Staking mechanisms increase token utility and encourage long-term holding, reduc
 
 ---
 
-## Notes
+### Notes
 
 - No smart contract work needed - data comes from event logs
 - Consider pagination for users with many transactions
 
 ---
 
-## Definition of Done
+### Definition of Done
 
 - [ ] All related implementation tasks completed
 - [ ] All acceptance criteria met

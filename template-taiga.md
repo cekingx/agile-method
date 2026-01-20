@@ -1,4 +1,4 @@
-# Product Requirement Document
+# Taiga User Story Template
 
 ## Epic: [Epic Name]
 
@@ -18,12 +18,11 @@
 **I want to** [action/feature]  
 **So that** [benefit/value]
 
-**Priority**: High / Medium / Low  
 **Estimate**: [X story points]
 
 ---
 
-## Acceptance Criteria (User Perspective)
+### Acceptance Criteria (User Perspective)
 
 - [ ] User can [perform specific action]
 - [ ] User sees [expected result or feedback]
@@ -32,13 +31,13 @@
 
 ---
 
-## Notes
+### Notes
 
 [Any additional context, dependencies, or clarifications needed]
 
 ---
 
-## Definition of Done
+### Definition of Done
 
 - [ ] All related implementation tasks completed
 - [ ] All acceptance criteria met
